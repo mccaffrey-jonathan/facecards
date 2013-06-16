@@ -9,6 +9,10 @@ import com.facebook.Session;
 import com.facebook.SessionState;
 import com.facebook.UiLifecycleHelper;
 
+import java.util.List;
+
+import org.json.JSONArray;
+
 public class RecentlyAddedFriendsActivity extends Activity {
 
     private static final String TAG = "RecentlyAddedFriendsActivity";
@@ -42,6 +46,14 @@ public class RecentlyAddedFriendsActivity extends Activity {
         Log.i(TAG, "in onCreate of RecentlyAddedFriends!");
 
         Session sesh = Session.getActiveSession();
+
+        FBRequests.getRecentlyAddedFriends(sesh,
+            new FBRequests.RecentlyAddedFriendsCallback() {
+                @Override
+                public void onSuccess(List<FBRequests.Friend> recentUsers) {
+                    Log.i(TAG, "on Success");
+                }
+            });
 
         // Inflate our UI from its XML layout description.
         setContentView(R.layout.splash_activity);
