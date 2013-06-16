@@ -15,6 +15,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.facebook.widget.ProfilePictureView;
 
@@ -31,7 +32,7 @@ public class QuizPageActivity extends Activity {
 
         Intent startingIntent = getIntent();
 
-        String[] names = startingIntent.getStringArrayExtra("names");
+        final String[] names = startingIntent.getStringArrayExtra("names");
         String[] fb_ids = startingIntent.getStringArrayExtra("uids");
 
 //        String[] names = new String[] {"John", "Bob", "Sarah"};
@@ -71,6 +72,9 @@ public class QuizPageActivity extends Activity {
                         @Override
                         public boolean onDrag(View view, DragEvent dragEvent) {
                             if (dragEvent.getAction() == DragEvent.ACTION_DROP) {
+                                boolean correct = view.getTag().equals(
+                                                  dragEvent.getClipData().getItemAt(0).getText());
+                                Toast.makeText(getContext(), correct ? "Correct!" : "Nope", 2).show();
                                 Log.i("AMK", "Dropped into me: " + Integer.toString(position));
                                 return true;
                             } else if (dragEvent.getAction() == DragEvent.ACTION_DRAG_STARTED) {
@@ -80,6 +84,8 @@ public class QuizPageActivity extends Activity {
                             }
                         }
                     });
+                    // save correct name on view
+                    view.setTag(names[position]);
                 }
                 ProfilePictureView pic_view = (ProfilePictureView) view;
                 pic_view.setProfileId((java.lang.String)this.getItem(position));
