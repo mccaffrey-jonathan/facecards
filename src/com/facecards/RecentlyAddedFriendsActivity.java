@@ -1,6 +1,7 @@
 package com.facecards;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,6 +18,7 @@ public class RecentlyAddedFriendsActivity extends Activity {
 
     private static final String TAG = "RecentlyAddedFriendsActivity";
     private UiLifecycleHelper uiHelper;
+    private ProgressDialog progress;
 
     private Activity getActivity() {
         return this;
@@ -40,6 +42,13 @@ public class RecentlyAddedFriendsActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        progress = new ProgressDialog(this);
+        progress.setTitle("Loading");
+        progress.setMessage("Loading your Recently Added Friends...");
+        progress.show();
+
+        // To dismiss the dialog
         uiHelper = new UiLifecycleHelper(getActivity(), callback);
         uiHelper.onCreate(savedInstanceState);
 
@@ -65,12 +74,14 @@ public class RecentlyAddedFriendsActivity extends Activity {
                     userPassingIntent.putExtra("names", names);
                     userPassingIntent.putExtra("uids", uids);
 
+                    progress.dismiss();
+
                     startActivity(userPassingIntent);
                 }
             });
 
         // Inflate our UI from its XML layout description.
-        setContentView(R.layout.splash_activity);
+        setContentView(R.layout.recently_added_friends_activity);
     }
 
     @Override
