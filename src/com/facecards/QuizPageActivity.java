@@ -58,6 +58,7 @@ public class QuizPageActivity extends Activity {
             }
         });
 
+        final GridView photos_view = (GridView) findViewById(R.id.quiz_photos);
 
         class ProfilePictureArrayAdapter<String> extends ArrayAdapter<String> {
             public ProfilePictureArrayAdapter(Context c, int r, String[] items) {
@@ -76,6 +77,9 @@ public class QuizPageActivity extends Activity {
                                                   dragEvent.getClipData().getItemAt(0).getText());
                                 Toast.makeText(getContext(), correct ? "Correct!" : "Nope", 2).show();
                                 Log.i("AMK", "Dropped into me: " + Integer.toString(position));
+                                ProfilePictureArrayAdapter.this.remove((String)view.getTag());
+                                ProfilePictureArrayAdapter.this.notifyDataSetChanged();
+                                photos_view.invalidateViews();
                                 return true;
                             } else if (dragEvent.getAction() == DragEvent.ACTION_DRAG_STARTED) {
                                 return true;   // Yeah, I'm down to take a drop event.
@@ -95,7 +99,6 @@ public class QuizPageActivity extends Activity {
 
         ProfilePictureArrayAdapter<String> photos_adapter = new ProfilePictureArrayAdapter<String>(
             this, R.layout.quiz_photo, fb_ids);
-        GridView photos_view = (GridView) findViewById(R.id.quiz_photos);
         photos_view.setAdapter(photos_adapter);
     }
 }
