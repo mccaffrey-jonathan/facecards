@@ -14,15 +14,21 @@
  * limitations under the License.
  */
 
-package com.facebook.samples.profilepicture;
+package com.facebook.model;
 
-import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 
-public class ProfilePictureSampleActivity extends FragmentActivity {
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile_picture_sample);
-    }
+/**
+ * Use this annotation on getters and setters in an interface that derives from
+ * GraphObject, if you wish to override the default property name that is inferred
+ * from the name of the method.
+ *
+ * If this annotation is specified on a method, it must contain a non-empty String
+ * value that represents the name of the property that the method is a getter or setter
+ * for.
+ */
+@Retention(RetentionPolicy.RUNTIME)
+public @interface PropertyName {
+    String value();
 }
