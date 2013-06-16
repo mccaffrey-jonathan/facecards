@@ -17,8 +17,8 @@
 
 <resources>
     <string name="intro_text">Welcome to Alexey and Jon\'s sick flashcards app</string>
-    <string name="app_name">FaceCards</string>
-    <string name="app_id">533621793362931</string>
+    <string name="app_name">Remember Me</string>
+    <string name="app_id">428834293872744</string>
 
     <string name="description">Sample app demonstrating the use of ProfilePictureView</string>
     <string name="cropping_label">Show cropped version</string>
