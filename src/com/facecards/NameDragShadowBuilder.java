@@ -25,7 +25,7 @@ public class NameDragShadowBuilder extends View.DragShadowBuilder {
             super(v);
 
             // Creates a draggable image that will fill the Canvas provided by the system.
-            shadow = new ColorDrawable(Color.LTGRAY);
+            shadow = new ColorDrawable(Color.BLUE);
         }
 
         // Defines a callback that sends the drag shadow dimensions and touch point back to the
@@ -36,10 +36,10 @@ public class NameDragShadowBuilder extends View.DragShadowBuilder {
         int width, height;
 
         // Sets the width of the shadow to half the width of the original View
-        width = getView().getWidth() / 2;
+        width = getView().getWidth();
 
         // Sets the height of the shadow to half the height of the original View
-        height = getView().getHeight() / 2;
+        height = getView().getHeight();
 
         // The drag shadow is a ColorDrawable. This sets its dimensions to be the same as the
         // Canvas that the system will provide. As a result, the drag shadow will fill the
