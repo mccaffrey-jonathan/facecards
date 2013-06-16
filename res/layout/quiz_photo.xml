@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView
+<com.facebook.widget.ProfilePictureView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/quiz_photo"
     android:layout_height="wrap_content"
-    android:text="this string" />
+    android:layout_width="0dp"
+    android:layout_weight="1"
+    app:preset_size="large"
+    app:is_cropped="true"
+    />
