@@ -16,9 +16,11 @@
 -->
 
 <resources>
-    <string name="intro_text">Welcome to Alexey and Jon\'s sick flashcards app</string>
+    <string name="intro_text">Welcome to Remember Me, a helpful Facebook application to remember friends and faces you\'ve met.  Match up the names and faces of your recent friends!</string>
     <string name="app_name">Remember Me</string>
     <string name="app_id">428834293872744</string>
+
+    <color name="fbblue">#00007F</color>
 
     <string name="description">Sample app demonstrating the use of ProfilePictureView</string>
     <string name="cropping_label">Show cropped version</string>

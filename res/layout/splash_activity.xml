@@ -5,13 +5,32 @@
     xmlns:facebook="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
-    <TextView android:id="@+id/intro_text"
+    android:orientation="vertical"
+    android:background="@color/fbblue">
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dip"
+            android:layout_weight="1"
+            android:gravity="center|top"
+            android:orientation="vertical" >
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:src="@drawable/large_icon"
+        />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1"
         android:gravity="center"
-        android:layout_weight="0"
-        android:text="@string/intro_text" />
+        android:orientation="vertical" >
+        <TextView android:id="@+id/intro_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:text="@string/intro_text" />
+    </LinearLayout>
     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dip"
