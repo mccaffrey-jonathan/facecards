@@ -2,6 +2,7 @@ package com.facecards;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
 
 public class SplashActivity extends Activity {
 
@@ -11,7 +12,6 @@ public class SplashActivity extends Activity {
 
         // Inflate our UI from its XML layout description.
         setContentView(R.layout.splash_activity);
-
     }
 
 }
