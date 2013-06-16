@@ -50,8 +50,22 @@ public class RecentlyAddedFriendsActivity extends Activity {
         FBRequests.getRecentlyAddedFriends(sesh,
             new FBRequests.RecentlyAddedFriendsCallback() {
                 @Override
-                public void onSuccess(List<FBRequests.Friend> recentUsers) {
+                public void onSuccess(List<FBRequests.Friend> recentNewFriends) {
                     Log.i(TAG, "on Success");
+                    Intent userPassingIntent = new Intent(RecentlyAddedFriendsActivity.this, QuizPageActivity.class);
+
+                    String[] names = new String[recentNewFriends.size()];
+                    String[] uids = new String[recentNewFriends.size()];
+
+                    for (int i = 0; i < recentNewFriends.size(); i++) {
+                        names[i] = recentNewFriends.get(i).name;
+                        uids[i] = Long.toString(recentNewFriends.get(i).uid);
+                    }
+
+                    userPassingIntent.putExtra("names", names);
+                    userPassingIntent.putExtra("uids", uids);
+
+                    startActivity(userPassingIntent);
                 }
             });
 

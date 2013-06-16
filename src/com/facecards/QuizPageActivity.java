@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.ClipData;
 import android.content.ClipDescription;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.DragEvent;
@@ -28,8 +29,13 @@ public class QuizPageActivity extends Activity {
         // Inflate our UI from its XML layout description.
         setContentView(R.layout.quiz_page_activity);
 
-        String[] names = new String[] {"John", "Bob", "Sarah"};
-        String[] fb_ids = new String[] {"618833", "4"};
+        Intent startingIntent = getIntent();
+
+        String[] names = startingIntent.getStringArrayExtra("names");
+        String[] fb_ids = startingIntent.getStringArrayExtra("uids");
+
+//        String[] names = new String[] {"John", "Bob", "Sarah"};
+//        String[] fb_ids = new String[] {"618833", "4"};
 
         ArrayAdapter names_adapter = new ArrayAdapter<String>(this, R.layout.quiz_name, names);
         GridView names_view = (GridView) findViewById(R.id.quiz_names);
