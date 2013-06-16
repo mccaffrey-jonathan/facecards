@@ -9,9 +9,13 @@ import com.facebook.Session;
 import com.facebook.SessionState;
 import com.facebook.UiLifecycleHelper;
 
-public class SplashActivity extends Activity {
+import java.util.List;
 
-    private static final String TAG = "SplashActivity";
+import org.json.JSONArray;
+
+public class RecentlyAddedFriendsActivity extends Activity {
+
+    private static final String TAG = "RecentlyAddedFriendsActivity";
     private UiLifecycleHelper uiHelper;
 
     private Activity getActivity() {
@@ -21,13 +25,9 @@ public class SplashActivity extends Activity {
     private void onSessionStateChange(Session session, SessionState state, Exception exception) {
         if (state.isOpened()) {
             Log.i(TAG, "Logged in...");
-
-            Intent myIntent = new Intent(this, RecentlyAddedFriendsActivity.class );
-            startActivityForResult(myIntent,0);
         } else if (state.isClosed()) {
             Log.i(TAG, "Logged out...");
         }
-
     }
 
     private Session.StatusCallback callback = new Session.StatusCallback() {
@@ -42,6 +42,18 @@ public class SplashActivity extends Activity {
         super.onCreate(savedInstanceState);
         uiHelper = new UiLifecycleHelper(getActivity(), callback);
         uiHelper.onCreate(savedInstanceState);
+
+        Log.i(TAG, "in onCreate of RecentlyAddedFriends!");
+
+        Session sesh = Session.getActiveSession();
+
+        FBRequests.getRecentlyAddedFriends(sesh,
+            new FBRequests.RecentlyAddedFriendsCallback() {
+                @Override
+                public void onSuccess(List<FBRequests.Friend> recentUsers) {
+                    Log.i(TAG, "on Success");
+                }
+            });
 
         // Inflate our UI from its XML layout description.
         setContentView(R.layout.splash_activity);
